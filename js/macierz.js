@@ -2,7 +2,7 @@
 
 var macierz = {
 	
-		wymiarX:	0,
+		wymiarX:	0,					//wielkość planszy w osi X (ilość sześcianów)
 		wymiarY:	0,
 		wymiarZ:	0,
 		
@@ -18,6 +18,11 @@ var macierz = {
 		macierzObrotuX:	[[1,0,0,0],[0,this.cosAX,this.sinAX,0],[0,-this.sinAX,this.cosAX,0],[0,0,0,1]],
 		macierzObrotuY:	[[this.cosAY,0,-this.sinAY,0],[0,1,0,0],[this.sinAY,0,this.cosAY,0],[0,0,0,1]],
 		macierzObrotuZ:	[[this.cosAZ,-this.sinAZ,0,0],[this.sinAZ,this.cosAZ,0,0],[0,0,1,0],[0,0,0,1]],
+		
+		transX:	0,
+		transY:	0,
+		transZ:	0,
+		macierzTranslacji:	[[1,0,0,0],[0,1,0,0],[0,0,1,0],[0, 0, 0, 1]],
 		
 		tablica:	[],
 		punkt: function(pozycjaX, pozycjaY, pozycjaZ){
@@ -98,10 +103,14 @@ var macierz = {
 		
 		
 		
-		przesunPunkt:	function(){
+		translacja:	function(dlugX, dlugY, dlugZ){
 		
-			
-		
+				this.transX = dlugX;
+				this.transY = dlugY;
+				this.transZ = dlugZ;
+				this.macierzTranslacji[3][0] = dlugX;
+				this.macierzTranslacji[3][1] = dlugY;
+				this.macierzTranslacji[3][2] = dlugZ;
 		},
 		
 		
@@ -111,9 +120,14 @@ var macierz = {
 			for (var i=0; i<this.wymiarX; i++){
 				for (var j=0; j<this.wymiarY; j++){
 					for (var k=0; k<this.wymiarZ; k++){
+						macierz.translacja(-150,-150,-100);
+						this.aktualizujPozycjePunktu(i, j, k, macierz.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzTranslacji));					
 						this.aktualizujPozycjePunktu(i, j, k, macierz.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzObrotuX));					
 						this.aktualizujPozycjePunktu(i, j, k, macierz.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzObrotuY));				
-						this.aktualizujPozycjePunktu(i, j, k, macierz.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzObrotuZ));				
+						this.aktualizujPozycjePunktu(i, j, k, macierz.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzObrotuZ));
+						macierz.translacja(150,150,100);
+						this.aktualizujPozycjePunktu(i, j, k, macierz.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzTranslacji));
+						macierz.translacja(0,0,0);
 					}
 				}
 			}
@@ -177,7 +191,7 @@ var testy = {
 		if (this.katZFL) this.katZ+=this.obrotZ; else this.katZ-=this.obrotZ;
 			if (this.katZ>this.katZgranicaUP) this.katZFL=false;
 			if (this.katZ<this.katZgranicaDAWN) this.katZFL=true;
-			
+		
 		macierz.aktualizujKatObrotu(this.katX,this.katY,this.katZ);
 		macierz.przeliczWszystko();
 	},
