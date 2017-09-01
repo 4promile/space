@@ -1,0 +1,84 @@
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="css/style1.css" />
+</head>
+
+
+<body>
+
+<div id="glowne-okno">
+
+	<center>
+	<canvas id="mycanvas" width="240" height="400"></canvas>
+	</center>
+<center id="test">próbny tekst</center>
+<center id="test2">próbny tekst</center>
+<br><br><center>test z tablicy jednowierszowej*kilkuwierszowa:</center>
+<center id="test3">próbny tekst</center>
+</div>
+
+<script src="js/macierz.js"></script>
+<script src="js/rysuj.js"></script>
+<script>
+	var canvas = document.getElementById("mycanvas");
+	var ctx=canvas.getContext("2d");	
+	
+	function animacja(czas){
+		
+		document.getElementById("mycanvas").style.height = ruszWymiaryCanvasa.wymiarX;
+		document.getElementById("mycanvas").style.width = ruszWymiaryCanvasa.wymiarY;
+		
+		//ruszWymiaryCanvasa.funkcja();
+		plansza.tlo();
+		plansza.rysujSzescian(1,1,1,1);
+		plansza.rysujSzescian(3,3,3,1);
+		
+		
+		testy.ruszaj();
+		
+		requestAnimationFrame(animacja);
+	}
+	
+	var ruszWymiaryCanvasa = {
+	
+		wymiarX:	300,
+		wymiarY:	200,
+		znakX:		1,
+		znakY:		1,
+		katPochylenia: 0,
+		
+		funkcja:	function(){
+		
+			if (this.wymiarX > 300) this.znakX = -2;
+			if (this.wymiarX < 200) this.znakX = 2;
+			
+			this.wymiarX = this.wymiarX + this.znakX;
+			
+			if (this.wymiarY > 220) this.znakY = -2;
+			if (this.wymiarY < 80) this.znakY = 2;
+			
+			this.wymiarY = this.wymiarY + this.znakY;
+		
+			this.katPochylenia = -5 + Math.random()*10;
+		
+		document.getElementById("glowne-okno").style.transform = "rotateZ(" + this.katPochylenia + "deg)";
+		
+		},
+	
+	};
+	
+	var testowaTablica = [[2,5,3,4,6,22,"fsfsdsadf"], [4,6,5,7,4]];
+	
+	//document.getElementById("test").innerHTML = testowaTablica[0];
+	document.getElementById("test").innerHTML = macierzTestowaWynik[0];
+	document.getElementById("test2").innerHTML = macierzTestowaWynik[1];
+	document.getElementById("test3").innerHTML = macierzTestowaWynik2;
+	
+	animacja();
+
+</script>
+
+
+</body>
+
+</html>
