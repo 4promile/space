@@ -48,6 +48,25 @@ var macierz = {
 							}
 						}
 					},
+					
+		
+		stworzPunktyPerspektywa:	function(ileX, ileY, ileZ, odstep){
+					
+						this.wymiarX=ileX;
+						this.wymiarY=ileY;
+						this.wymiarZ=ileZ;
+					
+						for (var i=0; i<ileX; i++){
+							this.tablica[i] = [];
+							for (var j=0; j<ileY; j++){
+								this.tablica[i][j]=[];
+								for (var k=0; k<ileZ; k++){
+									this.tablica[i][j][k]= new this.punkt((i-0.5*ileX)*(odstep+5*k), (j-0.5*ileY)*(odstep+5*k), k*odstep);
+								}
+							}
+						}
+		},
+		
 		
 		mnozenie:		function(macierz1, macierz2){
 							
@@ -120,14 +139,14 @@ var macierz = {
 			for (var i=0; i<this.wymiarX; i++){
 				for (var j=0; j<this.wymiarY; j++){
 					for (var k=0; k<this.wymiarZ; k++){
-						macierz.translacja(-250,-150,-100);
+						this.translacja(-100,-150,-100);
 						this.aktualizujPozycjePunktu(i, j, k, macierz.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzTranslacji));					
 						this.aktualizujPozycjePunktu(i, j, k, macierz.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzObrotuX));					
 						this.aktualizujPozycjePunktu(i, j, k, macierz.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzObrotuY));				
 						this.aktualizujPozycjePunktu(i, j, k, macierz.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzObrotuZ));
-						macierz.translacja(250,150,100);
+						this.translacja(100,150,100);
 						this.aktualizujPozycjePunktu(i, j, k, macierz.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzTranslacji));
-						macierz.translacja(0,0,0);
+						this.translacja(0,0,0);
 					}
 				}
 			}
@@ -147,7 +166,7 @@ var macierz = {
 	};
 	
 	
-macierz.stworzPunkty(5,5,60,65);
+macierz.stworzPunktyPerspektywa(5,5,60,65);
 	
 	
 	
@@ -162,25 +181,25 @@ var macierzTestowa5 = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[5,2,0,1]];
 var macierzTestowaWynik2 = macierz.mnozenie(macierzTestowa4, macierzTestowa5);
 	
 	
-macierz.aktualizujKatObrotu(0.05,0.3,0.1);
-macierz.przeliczWszystko();
+//macierz.aktualizujKatObrotu(0.00,0.0.01,0.0);
+//macierz.przeliczWszystko();
 	
 var testy = {
 	katX:	0,
 	katXFL:	true,
 	katXgranicaUP: 0.035,
 	katXgranicaDAWN: -0.035,
-	obrotX:	0.001,
-	katY:	0,
+	obrotX:	0.0001,
+	katY:	0,		
 	katYFL:	true,
-	katYgranicaUP: 0.015,
-	katYgranicaDAWN: -0.015,
-	obrotY:	0.0005,
-	katZ:	0,
+	katYgranicaUP: 0.1,
+	katYgranicaDAWN: -0.1,
+	obrotY:	0.0001,
+	katZ:	0,		
 	katZFL:	true,
-	katZgranicaUP: 0.025,
-	katZgranicaDAWN: -0.025,
-	obrotZ:	0.0007,
+	katZgranicaUP: 0.001,
+	katZgranicaDAWN: -0.001,
+	obrotZ:	0.000,	
 	ruszaj: function(){
 		if (this.katXFL) this.katX+=this.obrotX; else this.katX-=this.obrotX;
 			if (this.katX>this.katXgranicaUP) this.katXFL=false;

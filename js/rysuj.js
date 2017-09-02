@@ -14,6 +14,7 @@ var plansza = {
 			ctx.stroke();
 		},
 		
+		
 		rysujSzescian:	function(pozycjaX, pozycjaY, pozycjaZ, wielkosc){
 			
 			ctx.beginPath();
@@ -45,4 +46,13 @@ var plansza = {
 			ctx.stroke();
 		},
 		
+		rysujWszystkie:	function(){
+			for (var i=0; i<macierz.wymiarX-1; i++){
+				for (var j=0; j<macierz.wymiarY-1; j++){
+					for (var k=0; k<macierz.wymiarZ-1; k++){
+						this.rysujSzescian(i,j,k,1);
+					}
+				}
+			}
+		},
 	};
