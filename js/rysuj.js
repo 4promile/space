@@ -4,7 +4,7 @@ var plansza = {
 		tlo:	function(){
 			//ctx.save();
 			ctx.fillStyle = "RGBA(128,128,128,1)";
-			ctx.fillRect(0,0,240,400);
+			ctx.fillRect(0,0,500,500);
 			//ctx.restore();
 		},
 		
