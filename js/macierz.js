@@ -120,12 +120,12 @@ var macierz = {
 			for (var i=0; i<this.wymiarX; i++){
 				for (var j=0; j<this.wymiarY; j++){
 					for (var k=0; k<this.wymiarZ; k++){
-						macierz.translacja(-350,-250,-100);
+						macierz.translacja(-250,-150,-100);
 						this.aktualizujPozycjePunktu(i, j, k, macierz.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzTranslacji));					
 						this.aktualizujPozycjePunktu(i, j, k, macierz.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzObrotuX));					
 						this.aktualizujPozycjePunktu(i, j, k, macierz.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzObrotuY));				
 						this.aktualizujPozycjePunktu(i, j, k, macierz.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzObrotuZ));
-						macierz.translacja(350,250,100);
+						macierz.translacja(250,150,100);
 						this.aktualizujPozycjePunktu(i, j, k, macierz.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzTranslacji));
 						macierz.translacja(0,0,0);
 					}
