@@ -147,7 +147,7 @@ var macierz = {
 	};
 	
 	
-macierz.stworzPunkty(5,5,60,35);
+macierz.stworzPunkty(5,5,60,65);
 	
 	
 	
@@ -162,7 +162,7 @@ var macierzTestowa5 = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[5,2,0,1]];
 var macierzTestowaWynik2 = macierz.mnozenie(macierzTestowa4, macierzTestowa5);
 	
 	
-macierz.aktualizujKatObrotu(0,0.3,0.1);
+macierz.aktualizujKatObrotu(0.05,0.3,0.1);
 macierz.przeliczWszystko();
 	
 var testy = {

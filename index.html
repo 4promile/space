@@ -9,38 +9,40 @@
 <div id="glowne-okno">
 
 	<center>
-	<canvas id="mycanvas" width="580" height="500"></canvas>
+	<canvas id="mycanvas" width="960" height="520"></canvas>
 	</center>
-<center id="test">próbny tekst</center>
-<center id="test2">próbny tekst</center>
-<br><br><center>test z tablicy jednowierszowej*kilkuwierszowa:</center>
-<center id="test3">próbny tekst</center>
+<center id="test" style="display:none;">próbny tekst1</center>
+<center id="test2" style="display:none;">próbny tekst2</center>
+<center id="test3" style="display:none;">próbny tekst3</center>
 </div>
 
 <script src="js/macierz.js"></script>
 <script src="js/rysuj.js"></script>
 <script src="js/obiekty.js"></script>
+<script src="js/okno.js"></script>
 <script>
 	var canvas = document.getElementById("mycanvas");
 	var ctx=canvas.getContext("2d");	
 	
+	okno.ustawWymiary();
+	
 	function animacja(czas){
-		
+	
 		//document.getElementById("mycanvas").style.height = ruszWymiaryCanvasa.wymiarX;
 		//document.getElementById("mycanvas").style.width = ruszWymiaryCanvasa.wymiarY;
 		
 		//ruszWymiaryCanvasa.funkcja();
 		plansza.tlo();
-		plansza.rysujSzescian(1,1,1,1);
+		plansza.rysujSzescian(0,0,0,1);
 		plansza.rysujSzescian(3,3,3,1);
-		plansza.rysujSzescian(2,3,2,1);
-		plansza.rysujSzescian(2,1,2,1);
-		plansza.rysujSzescian(2,0,2,1);
-		plansza.rysujSzescian(2,0,3,1);
+		plansza.rysujSzescian(3,3,4,1);
+		plansza.rysujSzescian(3,3,5,1);
+		plansza.rysujSzescian(3,3,8,1);
+		/*plansza.rysujSzescian(2,0,3,1);
 		plansza.rysujSzescian(2,0,4,1);
 		plansza.rysujSzescian(2,0,5,1);
 		plansza.rysujSzescian(2,0,6,1);
-		plansza.rysujSzescian(2,0,7,1);
+		plansza.rysujSzescian(2,0,7,1);*/
 		
 		
 		
@@ -80,9 +82,9 @@
 	var testowaTablica = [[2,5,3,4,6,22,"fsfsdsadf"], [4,6,5,7,4]];
 	
 	//document.getElementById("test").innerHTML = testowaTablica[0];
-	document.getElementById("test").innerHTML = macierzTestowaWynik[0];
-	document.getElementById("test2").innerHTML = macierzTestowaWynik[1];
-	document.getElementById("test3").innerHTML = macierzTestowaWynik2;
+	//document.getElementById("test").innerHTML = macierzTestowaWynik[0];
+	//document.getElementById("test2").innerHTML = macierzTestowaWynik[1];
+	//document.getElementById("test3").innerHTML = macierzTestowaWynik2;
 	
 	animacja();
 
