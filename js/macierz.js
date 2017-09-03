@@ -192,8 +192,8 @@ var macierz = {
 
 	
 //początkowe ustawienie punktów i macierzy:
-macierz.stworzPunktyPerspektywa(6,6,20,65);
-macierz.translacja(400,330,0);
+macierz.stworzPunktyPerspektywa(6,6,120,1);
+macierz.translacja(400,310,-2000);
 macierz.przeliczMacierz(macierz.macierzTranslacji);
 	
 	
@@ -215,8 +215,8 @@ var testy = {
 	
 	katX:	0,
 	katXFL:	true,
-	katXgranicaUP: 0.002,
-	katXgranicaDAWN: -0.002,
+	katXgranicaUP: 0.001,
+	katXgranicaDAWN: -0.001,
 	obrotX:	0.0001,
 	
 	katY:	0,		
@@ -227,8 +227,8 @@ var testy = {
 	
 	katZ:	0,		
 	katZFL:	true,
-	katZgranicaUP: 0.0015,
-	katZgranicaDAWN: -0.0015,
+	katZgranicaUP: 0.01,
+	katZgranicaDAWN: -0.01,
 	obrotZ:	0.0001,
 	
 	ruszaj: function(){

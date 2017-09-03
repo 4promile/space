@@ -1,5 +1,23 @@
 
 var plansza = {
+	
+		tablicaPozycji:	[],
+		
+		nowyElementTablicy: function(){
+			this.fl = false;
+		},
+		
+		stworzTablicePozycji: function(dlX, dlY, dlZ){
+			for (var i=0; i<dlX; i++){
+							this.tablicaPozycji[i] = [];
+							for (var j=0; j<dlY; j++){
+								this.tablicaPozycji[i][j]=[];
+								for (var k=0; k<dlZ; k++){
+									this.tablicaPozycji[i][j][k]= new this.nowyElementTablicy();
+								}
+							}
+						}
+		},
 		
 		tlo:	function(){
 			//ctx.save();
@@ -59,4 +77,45 @@ var plansza = {
 		},
 		
 		
+		rysujWskazane:	function(){
+			for (var i=0; i<macierz.wymiarX-1; i++){
+				for (var j=0; j<macierz.wymiarY-1; j++){
+					for (var k=0; k<macierz.wymiarZ-1; k++){
+						if (this.tablicaPozycji[i][j][k].fl) this.rysujSzescian(i,j,k,1);
+					}
+				}
+			}
+		},
+		
+		
 };
+
+
+
+plansza.stworzTablicePozycji(macierz.wymiarX, macierz.wymiarY, macierz.wymiarZ);
+
+
+//testowe, później je usuń
+
+
+function losuj(zakres){
+	return (Math.floor(Math.random()*zakres));
+};
+
+var tymczasowaX = 0;
+var tymczasowaY = 0;
+plansza.tablicaPozycji[tymczasowaX][tymczasowaY][1].fl = true;
+function asteroid(){
+	for (var i=macierz.wymiarZ-2; i>-1; i--){
+		if (plansza.tablicaPozycji[tymczasowaX][tymczasowaY][i].fl) {
+			plansza.tablicaPozycji[tymczasowaX][tymczasowaY][i].fl = false;
+			plansza.tablicaPozycji[tymczasowaX][tymczasowaY][i+1].fl = true;
+		};
+		if (plansza.tablicaPozycji[tymczasowaX][tymczasowaY][macierz.wymiarZ-1].fl) {
+			plansza.tablicaPozycji[tymczasowaX][tymczasowaY][macierz.wymiarZ-1].fl = false;
+			tymczasowaX = losuj(macierz.wymiarX);
+			tymczasowaY = losuj(macierz.wymiarY);
+			plansza.tablicaPozycji[tymczasowaX][tymczasowaY][0].fl = true;};
+	};
+};
+
