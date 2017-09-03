@@ -68,6 +68,13 @@ var macierz = {
 		},
 		
 		
+		obliczOdstepPunktow:	function(){
+			
+						
+			
+		},
+		
+		
 		mnozenie:		function(macierz1, macierz2){
 							
 						var wynik = [];
@@ -140,18 +147,35 @@ var macierz = {
 				for (var j=0; j<this.wymiarY; j++){
 					for (var k=0; k<this.wymiarZ; k++){
 						this.translacja(-300,-200,-200);
-						this.aktualizujPozycjePunktu(i, j, k, macierz.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzTranslacji));					
-						this.aktualizujPozycjePunktu(i, j, k, macierz.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzObrotuX));					
-						this.aktualizujPozycjePunktu(i, j, k, macierz.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzObrotuY));				
-						this.aktualizujPozycjePunktu(i, j, k, macierz.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzObrotuZ));
+						this.aktualizujPozycjePunktu(i, j, k, this.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzTranslacji));					
+						this.aktualizujPozycjePunktu(i, j, k, this.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzObrotuX));					
+						this.aktualizujPozycjePunktu(i, j, k, this.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzObrotuY));				
+						this.aktualizujPozycjePunktu(i, j, k, this.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzObrotuZ));
 						this.translacja(300,200,200);
-						this.aktualizujPozycjePunktu(i, j, k, macierz.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzTranslacji));
+						this.aktualizujPozycjePunktu(i, j, k, this.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzTranslacji));
 						//this.translacja(0,0,0);
 					}
 				}
 			}
 		
 		},
+		
+		
+		
+		przeliczMacierz:	function(macierz){
+			//this.translacja(300,300,0);
+			for (var i=0; i<this.wymiarX; i++){
+				for (var j=0; j<this.wymiarY; j++){
+					for (var k=0; k<this.wymiarZ; k++){
+						//this.translacja(300,300,0);
+					this.aktualizujPozycjePunktu(i, j, k, this.mnozenie(this.tablica[i][j][k].macierzPunktu, macierz));
+					}
+				}
+			}
+		},
+		
+		
+		
 		
 		aktualizujPozycjePunktu:	function(pozX, pozY, pozZ, nowaPozycja){
 			this.tablica[pozX][pozY][pozZ].X = nowaPozycja[0];
@@ -165,9 +189,12 @@ var macierz = {
 		
 	};
 	
+
 	
-macierz.stworzPunkty(6,6,20,65);
-	
+//początkowe ustawienie punktów i macierzy:
+macierz.stworzPunktyPerspektywa(6,6,20,65);
+macierz.translacja(400,330,0);
+macierz.przeliczMacierz(macierz.macierzTranslacji);
 	
 	
 //testowe macierze, później można usunąć:
@@ -185,21 +212,25 @@ var macierzTestowaWynik2 = macierz.mnozenie(macierzTestowa4, macierzTestowa5);
 //macierz.przeliczWszystko();
 	
 var testy = {
+	
 	katX:	0,
 	katXFL:	true,
-	katXgranicaUP: 0.035,
-	katXgranicaDAWN: -0.035,
+	katXgranicaUP: 0.002,
+	katXgranicaDAWN: -0.002,
 	obrotX:	0.0001,
+	
 	katY:	0,		
 	katYFL:	true,
-	katYgranicaUP: 0.1,
-	katYgranicaDAWN: -0.1,
+	katYgranicaUP: 0.001,
+	katYgranicaDAWN: -0.001,
 	obrotY:	0.0001,
+	
 	katZ:	0,		
 	katZFL:	true,
-	katZgranicaUP: 0.001,
-	katZgranicaDAWN: -0.001,
-	obrotZ:	0.000,	
+	katZgranicaUP: 0.0015,
+	katZgranicaDAWN: -0.0015,
+	obrotZ:	0.0001,
+	
 	ruszaj: function(){
 		if (this.katXFL) this.katX+=this.obrotX; else this.katX-=this.obrotX;
 			if (this.katX>this.katXgranicaUP) this.katXFL=false;
