@@ -61,7 +61,7 @@ var macierz = {
 							for (var j=0; j<ileY; j++){
 								this.tablica[i][j]=[];
 								for (var k=0; k<ileZ; k++){
-									this.tablica[i][j][k]= new this.punkt((i-0.5*ileX)*(odstep+5*k), (j-0.5*ileY)*(odstep+5*k), k*odstep);
+									this.tablica[i][j][k]= new this.punkt((i-0.5*ileX)*(odstep+2*k), (j-0.5*ileY)*(odstep+2*k), k*(odstep+2*k));
 								}
 							}
 						}
@@ -139,14 +139,14 @@ var macierz = {
 			for (var i=0; i<this.wymiarX; i++){
 				for (var j=0; j<this.wymiarY; j++){
 					for (var k=0; k<this.wymiarZ; k++){
-						this.translacja(-100,-150,-100);
+						this.translacja(-300,-200,-200);
 						this.aktualizujPozycjePunktu(i, j, k, macierz.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzTranslacji));					
 						this.aktualizujPozycjePunktu(i, j, k, macierz.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzObrotuX));					
 						this.aktualizujPozycjePunktu(i, j, k, macierz.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzObrotuY));				
 						this.aktualizujPozycjePunktu(i, j, k, macierz.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzObrotuZ));
-						this.translacja(100,150,100);
+						this.translacja(300,200,200);
 						this.aktualizujPozycjePunktu(i, j, k, macierz.mnozenie(this.tablica[i][j][k].macierzPunktu, this.macierzTranslacji));
-						this.translacja(0,0,0);
+						//this.translacja(0,0,0);
 					}
 				}
 			}
@@ -166,7 +166,7 @@ var macierz = {
 	};
 	
 	
-macierz.stworzPunktyPerspektywa(5,5,60,65);
+macierz.stworzPunkty(6,6,20,65);
 	
 	
 	

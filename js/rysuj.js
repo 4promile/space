@@ -46,6 +46,8 @@ var plansza = {
 			ctx.stroke();
 		},
 		
+		
+		
 		rysujWszystkie:	function(){
 			for (var i=0; i<macierz.wymiarX-1; i++){
 				for (var j=0; j<macierz.wymiarY-1; j++){
@@ -55,4 +57,6 @@ var plansza = {
 				}
 			}
 		},
-	};
+		
+		
+};
